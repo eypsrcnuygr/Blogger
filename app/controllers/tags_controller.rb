@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  include TagsHelper
   def show
     @tags = Tag.find(params[:id])
   end
@@ -13,5 +14,4 @@ class TagsController < ApplicationController
     flash.notice = "Tag '#{@tags.name}' Deleted!"
     redirect_to action: 'index'
   end
-  
 end
