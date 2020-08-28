@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   include ArticlesHelper
+  before_action :require_login, only: %i[new create edit update destroy]
   def index
     @articles = Article.all
   end
@@ -31,13 +32,13 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
   end
-  
+
   def update
     @article = Article.find(params[:id])
     @article.update(article_params)
 
     flash.notice = "Article '#{@article.title}' Updated!"
-  
+
     redirect_to article_path(@article)
-  end  
+  end
 end
